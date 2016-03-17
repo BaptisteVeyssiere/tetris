@@ -5,11 +5,12 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Thu Mar  3 13:28:05 2016 nathan scutari
+** Last update Thu Mar 17 02:41:50 2016 nathan scutari
 */
 
 #include "tetris.h"
 #include <stdlib.h>
+#include <time.h>
 #include <ncurses.h>
 #include <curses.h>
 
@@ -79,7 +80,7 @@ void	display_moving(t_config *config)
     }
 }
 
-void	display_game(t_config *config)
+void	display_game(t_config *config, int form)
 {
   int	x;
 
@@ -98,8 +99,11 @@ void	display_game(t_config *config)
       mvprintw(1 + x, 15 + config->width + 1, "|");
     }
   display_non_movings(config);
-  display_moving(config);
-  display_next(config);
+  if (form == 1)
+    display_moving(config);
+  if (config->hide == 0)
+    display_next(config);
+  bottom_and_stats(config);
   refresh();
 }
 
@@ -109,21 +113,30 @@ void	init_config(t_config *config, t_tetrimino *tetri)
   int	y;
 
   x = -1;
-  config->right = 261;
-  config->left = 260;
-  config->turn = 259;
-  config->drop = 258;
-  config->pause = 328;
-  config->quit = 27;
+  fill_key(&config->right, "\033[C");
+  fill_key(&config->left, "\033[D");
+  fill_key(&config->turn, "\033[A");
+  fill_key(&config->drop, "\033[B");
+  fill_key(&config->pause, " ");
+  fill_key(&config->quit, "\033");
+  config->played = 0;
+  config->brek = 0;
+  config->highscore = 0;
+  config->score = 0;
+  config->debug = 0;
+  config->hide = 0;
+  config->level = 1;
+  config->lines = 0;
+  config->time = time(NULL);
   config->form = choose_tetrimino(tetri);
   config->next = choose_tetrimino(tetri);
   config->height = 20;
   config->width = 10;
-  config->map = malloc(sizeof(char *) * 20);
+  config->map = malloc(sizeof(char *) * config->height);
   config->pos[0] = (config->width / 2) - (config->form->width / 2);
   config->pos[1] = 0;
-  while (++x < 20)
-    config->map[x] = malloc(10);
+  while (++x < config->height)
+    config->map[x] = malloc(config->width);
   x = -1;
   while (++x < config->height)
     {

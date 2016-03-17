@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Thu Mar  3 11:36:35 2016 nathan scutari
+** Last update Thu Mar 17 02:40:53 2016 nathan scutari
 */
 
 #ifndef TETRIS_H_
@@ -24,12 +24,21 @@ typedef struct		s_tetrimino
 
 typedef struct		s_config
 {
-  int			right;
-  int			left;
-  int			turn;
-  int			drop;
-  int			pause;
-  int			quit;
+  char			*right;
+  char			*left;
+  int			level;
+  int			played;
+  char			lines;
+  int			score;
+  int			highscore;
+  char			debug;
+  char			*turn;
+  char			*drop;
+  char			*pause;
+  char			brek;
+  char			*quit;
+  char			hide;
+  int			time;
   int			width;
   int			height;
   int			pos[2];
@@ -41,6 +50,7 @@ typedef struct		s_config
 char	**get_form_wordtab(int, int);
 char	*my_realloc(char , char *);
 char	*get_fullname(char *);
-t_tetrimino	*choose_tetrimino(t_tetrimino *tetri);
+t_tetrimino	*choose_tetrimino(t_tetrimino *);
+char	*get_next_line(int);
 
 #endif /* !TETRIS_H_ */

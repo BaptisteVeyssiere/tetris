@@ -5,18 +5,28 @@
 ## Login   <scutar_n@epitech.net>
 ##
 ## Started on  Tue Feb 23 16:56:01 2016 nathan scutari
-## Last update Thu Mar  3 14:07:37 2016 nathan scutari
+## Last update Thu Mar 17 02:18:12 2016 nathan scutari
 ##
 
-NAME	=	check_tetrimino
+NAME	=	tetris
 
 SRCS	=	main.c			\
 		my_getnbr.c		\
+		get_next_line.c		\
+		user_config.c		\
+		get_long_args.c		\
 		form_wordtab.c		\
+		help.c			\
+		debug.c			\
 		tools.c			\
 		load_tetrimino.c	\
 		init_config.c		\
+		tetri_rotation.c	\
 		game_physic.c		\
+		end_game.c		\
+		fill_key.c		\
+		game_success.c		\
+		drop_bomb.c		\
 		key_control.c		\
 		display_dec.c		\
 		my_put_nbr.c		\

@@ -5,37 +5,71 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Thu Mar  3 14:03:33 2016 nathan scutari
-** Last update Thu Mar  3 14:11:23 2016 nathan scutari
+** Last update Thu Mar 10 23:38:58 2016 nathan scutari
 */
 
 #include "tetris.h"
 
 void	right_move(t_config *config)
 {
-  if (config->pos[0] + 1 + config->form->width >=
+  int	y;
+  int	x;
+
+  y = -1;
+  if (config->pos[0] + 1 + config->form->width >
       config->width)
     return ;
-    config->pos[0]++;
-  display_game(config);
+  while (++y < config->form->height)
+    {
+      x = config->form->width;
+      while (config->form->form[y][--x] != '*');
+      if (config->map[y + config->pos[1]]
+	  [x + config->pos[0] + 1] > 0)
+	return ;
+    }
+  config->pos[0]++;
+  display_game(config, 1);
 }
 
 void	left_move(t_config *config)
 {
-  if (config->pos[0] - 1 <= 0)
-    config->pos[0]--;
-  return ;
-  display_game(config);
+  int	x;
+  int	y;
+
+  y = -1;
+  if (config->pos[0] - 1 < 0)
+    return ;
+  while (++y < config->form->height)
+    {
+      x = -1;
+      while (config->form->form[y][++x] != '*');
+      if (config->map[y + config->pos[1]]
+	  [x + config->pos[0] - 1] > 0)
+	return ;
+    }
+  config->pos[0]--;
+  display_game(config, 1);
 }
 
-void	is_movement_key(int key, t_config *config)
+void	is_movement_key(char *key, t_config *config, t_tetrimino *tetri)
 {
-  if (key == config->right)
+  if (compare_key(key, config->right))
     right_move(config);
-  else if (key == config->left)
+  else if (compare_key(key, config->left))
     left_move(config);
+  else if (compare_key(key, config->drop))
+    drop_tetri(config, 0, tetri);
+  else if (compare_key(key, config->turn))
+    turn_tetri(config, 0, tetri);
 }
 
-void	key_control(int key, t_config *config)
+void	key_control(char *key, t_config *config, t_tetrimino *tetri)
 {
-  is_movement_key(key, config);
+  if (config->brek == 0)
+    is_movement_key(key, config, tetri);
+  if (compare_key(key, config->pause))
+    {
+      config->brek = (config->brek + 1) % 2;
+      config->time = time(0);
+    }
 }
