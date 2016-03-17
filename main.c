@@ -1,11 +1,11 @@
 /*
 ** main.c for tetris in /home/scutar_n/rendu/PSU/PSU_2015_tetris
-** 
+**
 ** Made by nathan scutari
 ** Login   <scutar_n@epitech.net>
-** 
+**
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Thu Mar 17 14:33:41 2016 nathan scutari
+** Last update Thu Mar 17 17:30:34 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -14,6 +14,18 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <time.h>
+#include <termios.h>
+
+void			init_ioctl()
+{
+  struct termios        term;
+
+  if (ioctl(0, TCGETS, &term) != 0)
+    printf("ioctl G prob\n");
+  term.c_cc[VMIN] = 0;
+  if (ioctl(0, TCSETS, &term) != 0)
+    printf("ioctl S prob\n");
+}
 
 void	prep_screen()
 {
@@ -31,9 +43,10 @@ void	prep_screen()
   init_pair(5, COLOR_MAGENTA, 0);
   init_pair(6, COLOR_CYAN, 0);
   init_pair(7, COLOR_WHITE, 0);
+  init_ioctl();
 }
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **env)
 {
   t_config	config;
   t_tetrimino	*tetri;
@@ -41,13 +54,16 @@ int	main(int ac, char **av)
   int		c;
   struct winsize	win;
 
+  if (env == NULL)
+    return (-1);
   srand(time(NULL));
   tetri = NULL;
   c = 0;
   key[0] = 0;
   if (load_tetriminos(&tetri) == -1)
     return (-1);
-  init_config(&config, tetri);
+  if (init_config(&config, tetri, env) == -1)
+    return (-1);
   if  (user_config(ac, av, &config) == -1)
     {
       endwin();
@@ -57,7 +73,6 @@ int	main(int ac, char **av)
     return (-1);
   prep_screen();
   debug_part(config, tetri);
-  nodelay(stdscr, 1);
   display_game(&config, 1);
   while (compare_key(key, config.quit) == 0)
     {

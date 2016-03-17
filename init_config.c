@@ -1,11 +1,11 @@
 /*
 ** init_config.c for tetris in /home/scutar_n/rendu/PSU/PSU_2015_tetris
-** 
+**
 ** Made by nathan scutari
 ** Login   <scutar_n@epitech.net>
-** 
+**
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Thu Mar 17 14:30:39 2016 nathan scutari
+** Last update Thu Mar 17 18:52:00 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -107,18 +107,42 @@ void	display_game(t_config *config, int form)
   refresh();
 }
 
-void	init_config(t_config *config, t_tetrimino *tetri)
+char	*get_term(char **env)
+{
+  char	*model;
+  int	i;
+
+  model = "TERM=";
+  i = -1;
+  while (env[++i] && !compare_largs(env[i], model));
+  if (!env[i])
+    return (NULL);
+  return (&env[i][5]);
+}
+
+int	init_config(t_config *config, t_tetrimino *tetri, char **env)
 {
   int	x;
   int	y;
+  int	i;
+  char	*s;
 
   x = -1;
-  fill_key(&config->right, "\033[C");
-  fill_key(&config->left, "\033[D");
-  fill_key(&config->turn, "\033[A");
-  fill_key(&config->drop, "\033[B");
+  if (setupterm(get_term(env), 1, &i) == 1)
+    return (-1);
+  if ((s = tigetstr("smkx")) == NULL)
+    return (-1);
+  write(1, s, my_strlen(s));
+  config->drop = tigetstr("kcud1");
+  config->left = tigetstr("kcub1");
+  config->right = tigetstr("kcuf1");
+  config->turn = tigetstr("kcuu1");
+  /* fill_key(&config->right, "\033[C"); */
+  /* fill_key(&config->left, "\033[D"); */
+  /* fill_key(&config->turn, "\033[A"); */
+  /* fill_key(&config->drop, "\033[B"); */
   fill_key(&config->pause, " ");
-  fill_key(&config->quit, "\033");
+  fill_key(&config->quit, "q");
   config->played = 0;
   config->speed = 5000;
   config->brek = 0;
