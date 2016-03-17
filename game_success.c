@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Thu Mar  3 14:44:34 2016 nathan scutari
-** Last update Mon Mar  7 18:52:51 2016 nathan scutari
+** Last update Thu Mar 17 14:31:13 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -32,6 +32,7 @@ void	line_complete(t_config *config, int y)
     {
       config->lines = 0;
       config->level++;
+      config->speed -= (config->speed / 8);
     }
   usleep(300000);
   display_game(config, 0);

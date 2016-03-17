@@ -5,17 +5,15 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Thu Mar 17 03:01:22 2016 nathan scutari
+** Last update Thu Mar 17 14:33:41 2016 nathan scutari
 */
 
 #include "tetris.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <ncurses.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <time.h>
-#include <curses.h>
 
 void	prep_screen()
 {
@@ -47,7 +45,8 @@ int	main(int ac, char **av)
   tetri = NULL;
   c = 0;
   key[0] = 0;
-  load_tetriminos(&tetri);
+  if (load_tetriminos(&tetri) == -1)
+    return (-1);
   init_config(&config, tetri);
   if  (user_config(ac, av, &config) == -1)
     {
@@ -72,7 +71,7 @@ int	main(int ac, char **av)
 	    end_game(&config, key);
 	  c = -1;
 	}
-      usleep(5000 - (config.level * 100));
+      usleep(get_speed(config.speed, config.level));
     }
     endwin();
 }

@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Thu Mar 17 02:41:50 2016 nathan scutari
+** Last update Thu Mar 17 14:30:39 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -120,6 +120,7 @@ void	init_config(t_config *config, t_tetrimino *tetri)
   fill_key(&config->pause, " ");
   fill_key(&config->quit, "\033");
   config->played = 0;
+  config->speed = 5000;
   config->brek = 0;
   config->highscore = 0;
   config->score = 0;

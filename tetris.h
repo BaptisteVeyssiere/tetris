@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Thu Mar 17 02:40:53 2016 nathan scutari
+** Last update Thu Mar 17 14:28:58 2016 nathan scutari
 */
 
 #ifndef TETRIS_H_
@@ -29,6 +29,7 @@ typedef struct		s_config
   int			level;
   int			played;
   char			lines;
+  int			speed;
   int			score;
   int			highscore;
   char			debug;

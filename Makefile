@@ -5,7 +5,7 @@
 ## Login   <scutar_n@epitech.net>
 ##
 ## Started on  Tue Feb 23 16:56:01 2016 nathan scutari
-## Last update Thu Mar 17 02:18:12 2016 nathan scutari
+## Last update Thu Mar 17 15:00:49 2016 nathan scutari
 ##
 
 NAME	=	tetris
@@ -13,6 +13,7 @@ NAME	=	tetris
 SRCS	=	main.c			\
 		my_getnbr.c		\
 		get_next_line.c		\
+		speed.c			\
 		user_config.c		\
 		get_long_args.c		\
 		form_wordtab.c		\
