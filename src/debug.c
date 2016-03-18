@@ -5,12 +5,13 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Thu Mar 17 00:54:16 2016 nathan scutari
-** Last update Fri Mar 18 17:12:37 2016 nathan scutari
+** Last update Fri Mar 18 22:26:12 2016 nathan scutari
 */
 
 #include "tetris.h"
 #include <termios.h>
 #include <sys/ioctl.h>
+#include <stdlib.h>
 
 void	my_debugstr(char *str)
 {
@@ -57,21 +58,117 @@ void	print_keys(t_config *config)
   my_putchar('\n');
 }
 
-void			debug_part(t_config *config, t_tetrimino *tetri)
+void	free_errtetri(t_tetrimino *tetri)
+{
+  free(tetri->name);
+  free(tetri);
+}
+
+void		clean_list(t_tetrimino **tetri)
+{
+  t_tetrimino	*tmp;
+  t_tetrimino	*previous;
+
+  sort_error_list(tetri);
+  tmp = *tetri;
+  previous = NULL;
+  while (tmp->error == 0 && tmp != NULL)
+    {
+      previous = tmp;
+      tmp = tmp->next;
+    }
+  if (tmp != NULL)
+    {
+      tmp = previous->next;
+      previous->next = NULL;
+      while (tmp != NULL)
+	{
+	  previous = tmp->next;
+	  free_errtetri(tmp);
+	  tmp = previous;
+	}
+    }
+}
+
+void	print_form(t_tetrimino *tetri)
+{
+  int	x;
+  int	y;
+  int	pos;
+
+  my_putstr(" :\n");
+  y = -1;
+  while (tetri->form[++y])
+    {
+      pos = my_strlen(tetri->form[y]);
+      while (tetri->form[y][--pos] == ' ');
+      x = -1;
+      while (++x <= pos)
+	my_putchar(tetri->form[y][x]);
+      my_putchar('\n');
+    }
+}
+
+void	print_tetri(t_tetrimino *tetri)
+{
+  my_putstr("Tetriminos : Name ");
+  my_putstr(tetri->name);
+  if (tetri->error)
+    {
+      my_putstr(" : Error\n");
+      return ;
+    }
+  my_putstr(" : Size ");
+  my_put_nbr(tetri->width);
+  my_putchar('*');
+  my_put_nbr(tetri->height);
+  my_putstr(" : Color ");
+  my_put_nbr(tetri->color);
+  print_form(tetri);
+}
+
+void			print_tetrinbr(t_tetrimino *tetri)
+{
+  int	x;
+
+  x = 0;
+  while (tetri != NULL)
+    {
+      ++x;
+      tetri = tetri->next;
+    }
+  my_putstr("Tetriminos : ");
+  my_put_nbr(x);
+  my_putchar('\n');
+}
+
+void			debug_part(t_config *config, t_tetrimino **tetri)
 {
   struct termios	term;
   struct termios	copy;
-  char			buf[2];
+  char			buf[4];
+  void			*save;
 
+  if (!(config->debug))
+    return ;
   ioctl(0, TCGETS, &term);
   copy = term;
   term.c_lflag &= ~(ECHO | ICANON);
   term.c_cc[VMIN] = 1;
   term.c_cc[VTIME] = 0;
   ioctl(0, TCSETS, &term);
-  //sort_list(&tetri);
+  sort_list(tetri);
   print_keys(config);
-  read(0, buf, 1);
+  print_tetrinbr(*tetri);
+  save = *tetri;
+  while (*tetri != NULL)
+    {
+      print_tetri(*tetri);
+      *tetri = (*tetri)->next;
+    }
+  *tetri = save;
+  my_putstr("Press a key to start Tetris\n");
+  read(0, buf, 3);
   ioctl(0, TCSETS, &copy);
   return ;
 }

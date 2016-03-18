@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Fri Mar 18 18:04:28 2016 Baptiste veyssiere
+** Last update Fri Mar 18 18:49:20 2016 nathan scutari
 */
 
 #ifndef TETRIS_H_
@@ -57,7 +57,7 @@ typedef struct          s_config
 */
 void	my_debugstr(char*);
 void	print_keys(t_config*);
-void	debug_part(t_config*, t_tetrimino*);
+void	debug_part(t_config*, t_tetrimino**);
 
 /*
 **display_dec.c

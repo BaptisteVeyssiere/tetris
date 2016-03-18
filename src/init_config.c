@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Fri Mar 18 16:26:25 2016 Baptiste veyssiere
+** Last update Fri Mar 18 20:20:50 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -24,21 +24,14 @@ t_tetrimino	*choose_tetrimino(t_tetrimino *tetri)
   tetriminos_nbr = 0;
   while (tetri != NULL)
     {
-      if (tetri->error == 0)
-	tetriminos_nbr++;
+      tetriminos_nbr++;
       tetri = tetri->next;
     }
   tetri = save;
   chosen_one = (rand() % tetriminos_nbr) + 1;
-  while (chosen_one > 0)
-    {
-      if (tetri->error == 0)
-	--chosen_one;
-      if (chosen_one == 0)
-	return (tetri);
-      tetri = tetri->next;
-    }
-  return (NULL);
+  while (--chosen_one > 0)
+    tetri = tetri->next;
+  return (tetri);
 }
 
 void	display_non_movings(t_config *config)

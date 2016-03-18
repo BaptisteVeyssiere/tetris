@@ -5,11 +5,41 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Feb 27 17:17:35 2016 Baptiste veyssiere
-** Last update Fri Mar 18 16:27:16 2016 nathan scutari
+** Last update Fri Mar 18 22:22:52 2016 nathan scutari
 */
 
 #include "tetris.h"
 #include <stdlib.h>
+
+int             check_error(t_tetrimino *current, t_tetrimino *next)
+{
+  if (current->error > next->error)
+    return (1);
+  return (0);
+}
+
+void		sort_error_list(t_tetrimino **list)
+{
+  t_tetrimino   *tmp;
+  t_tetrimino   *previous;
+
+  tmp = *list;
+  previous = NULL;
+  while (tmp->next != NULL)
+    {
+      if (check_error(tmp, tmp->next))
+        {
+          swap_list(previous, tmp, tmp->next, list);
+          previous = NULL;
+          tmp = *list;
+        }
+      else
+        {
+          previous = tmp;
+          tmp = tmp->next;
+        }
+    }
+}
 
 void		sort_list(t_tetrimino **list)
 {

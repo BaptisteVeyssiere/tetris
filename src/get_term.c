@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Mar 18 16:10:47 2016 Baptiste veyssiere
-** Last update Fri Mar 18 17:18:48 2016 nathan scutari
+** Last update Fri Mar 18 20:27:55 2016 nathan scutari
 */
 
 #include <tetris.h>
@@ -39,12 +39,9 @@ void	init_config_values(t_config *config, t_tetrimino *tetri)
   config->level = 1;
   config->lines = 0;
   config->time = time(NULL);
-  config->form = choose_tetrimino(tetri);
-  config->next = choose_tetrimino(tetri);
   config->height = 20;
   config->width = 10;
   config->map = malloc(sizeof(char *) * config->height);
-  config->pos[0] = (config->width / 2) - (config->form->width / 2);
   config->pos[1] = 0;
   while (++x < config->height)
     config->map[x] = malloc(config->width);
