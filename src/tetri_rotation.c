@@ -5,11 +5,33 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Thu Mar  3 16:03:22 2016 nathan scutari
-** Last update Thu Mar  3 18:19:06 2016 nathan scutari
+** Last update Fri Mar 18 22:43:52 2016 nathan scutari
 */
 
 #include "tetris.h"
 #include <stdlib.h>
+
+int	rotation_ok(t_config *config, char **new_tetri)
+{
+  int	x;
+  int	y;
+
+  if ((config->pos[0] + (config->form->height - 1)) >= config->width)
+    return (0);
+  else if ((config->pos[1] + (config->form->width - 1)) >= config->height)
+    return (0);
+
+  y = -1;
+  while (++y < config->form->width)
+    {
+      x = -1;
+      while (++x < config->form->height)
+	if (new_tetri[y][x] == '*' && config->map[y + config->pos[1]]
+	    [x + config->pos[0]] > 0)
+	  return (0);
+    }
+  return (1);
+}
 
 void	free_and_replace(t_config *config, char **new_tetri)
 {
@@ -17,13 +39,22 @@ void	free_and_replace(t_config *config, char **new_tetri)
   int	tmp;
 
   x = -1;
-  while (++x < config->form->height)
-    free(config->form->form[x]);
-  free(config->form->form);
-  config->form->form = new_tetri;
-  tmp = config->form->width;
-  config->form->width = config->form->height;
-  config->form->height = tmp;
+  if (rotation_ok(config, new_tetri))
+    {
+      while (++x < config->form->height)
+	free(config->form->form[x]);
+      free(config->form->form);
+      config->form->form = new_tetri;
+      tmp = config->form->width;
+      config->form->width = config->form->height;
+      config->form->height = tmp;
+    }
+  else
+    {
+      while (++x < config->form->height)
+	free(new_tetri[x]);
+      free(new_tetri);
+    }
 }
 
 void	rotation_tetri(t_config *config, char **new_tetri)
