@@ -5,10 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Nov 25 14:09:32 2015 nathan scutari
-** Last update Tue Feb 23 17:24:04 2016 nathan scutari
+** Last update Fri Mar 18 17:50:16 2016 Baptiste veyssiere
 */
 
-int	my_put_nbr(int	nbr)
+int	my_put_nbr(int nbr)
 {
   if (nbr == -2147483648)
     {

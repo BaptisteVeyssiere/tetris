@@ -1,11 +1,11 @@
 /*
 ** key_control.c for tetris in /home/scutar_n/rendu/PSU/PSU_2015_tetris
-** 
+**
 ** Made by nathan scutari
 ** Login   <scutar_n@epitech.net>
-** 
+**
 ** Started on  Thu Mar  3 14:03:33 2016 nathan scutari
-** Last update Thu Mar 10 23:38:58 2016 nathan scutari
+** Last update Fri Mar 18 17:59:48 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -60,7 +60,7 @@ void	is_movement_key(char *key, t_config *config, t_tetrimino *tetri)
   else if (compare_key(key, config->drop))
     drop_tetri(config, 0, tetri);
   else if (compare_key(key, config->turn))
-    turn_tetri(config, 0, tetri);
+    turn_tetri(config);
 }
 
 void	key_control(char *key, t_config *config, t_tetrimino *tetri)
