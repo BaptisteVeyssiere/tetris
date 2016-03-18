@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Fri Mar 18 20:20:50 2016 nathan scutari
+** Last update Fri Mar 18 22:30:37 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -107,7 +107,7 @@ int	init_config(t_config *config, t_tetrimino *tetri, char **env)
   int	i;
   char	*s;
 
-  if (setupterm(get_term(env), 1, &i) == 1)
+  if (setupterm(get_term(env), 1, &i) == 1 || i != 1)
     return (-1);
   if ((s = tigetstr("smkx")) == NULL)
     return (-1);

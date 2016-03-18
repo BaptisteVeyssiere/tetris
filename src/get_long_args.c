@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Thu Mar 17 01:19:39 2016 nathan scutari
-** Last update Fri Mar 18 16:07:50 2016 Baptiste veyssiere
+** Last update Fri Mar 18 21:22:32 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -61,7 +61,7 @@ int	get_next_long_config(char **av, int x, t_config *config)
   compare = get_long_compare_table();
   while (compare[++i] && compare_largs(av[x], compare[i]) == 0);
   if (i == 0 || i == 9 || i == 10)
-    return (config_print(i, config));
+    return (config_print(i, config, av[0]));
   else if (i == 1 || i == 8)
     return (config_nbrs(i, config, av[x]));
   else if (i >= 2 && i <= 5)

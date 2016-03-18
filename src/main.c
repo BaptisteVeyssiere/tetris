@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Fri Mar 18 22:23:39 2016 nathan scutari
+** Last update Fri Mar 18 22:30:52 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -49,7 +49,7 @@ void	prep_screen()
 t_tetrimino	*init_main(char **av, char **env, t_config *config,
 			   t_tetrimino *tetri)
 {
-  if (env == NULL)
+  if (env[0] == NULL)
     return (NULL);
   srand(time(NULL));
   tetri = NULL;
