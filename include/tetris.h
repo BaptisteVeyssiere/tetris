@@ -5,11 +5,14 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Thu Mar 17 14:28:58 2016 nathan scutari
+** Last update Fri Mar 18 16:55:42 2016 Baptiste veyssiere
 */
 
 #ifndef TETRIS_H_
 # define TETRIS_H_
+
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct		s_tetrimino
 {
@@ -48,10 +51,13 @@ typedef struct		s_config
   t_tetrimino		*next;
 }			t_config;
 
-char	**get_form_wordtab(int, int);
-char	*my_realloc(char , char *);
-char	*get_fullname(char *);
+char		**get_form_wordtab(int, int);
+char		*my_realloc(char , char *);
+char		*get_fullname(char *);
 t_tetrimino	*choose_tetrimino(t_tetrimino *);
-char	*get_next_line(int);
+char		*get_next_line(int);
+char		*get_term(char**);
+char		**get_short_compare_table();
+char		**get_long_compare_table();
 
 #endif /* !TETRIS_H_ */

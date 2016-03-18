@@ -5,14 +5,14 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 11:50:58 2016 nathan scutari
-** Last update Wed Mar  2 19:15:35 2016 nathan scutari
+** Last update Fri Mar 18 16:05:26 2016 Baptiste veyssiere
 */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "tetris.h"
 
-char **get_form_wordtab(int width, int height)
+char	**get_form_wordtab(int width, int height)
 {
   int	y;
   char	**form;
@@ -30,7 +30,7 @@ char **get_form_wordtab(int width, int height)
   return (form);
 }
 
-int	tetri_in_list(t_tetrimino **tetr)
+int		tetri_in_list(t_tetrimino **tetr)
 {
   t_tetrimino	*elem;
 
@@ -45,7 +45,7 @@ int	tetri_in_list(t_tetrimino **tetr)
   return (0);
 }
 
-void	 my_fillstr(char *str, char *to_fill)
+void	my_fillstr(char *str, char *to_fill)
 {
   int	x;
 

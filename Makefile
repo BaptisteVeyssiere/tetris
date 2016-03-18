@@ -5,40 +5,41 @@
 ## Login   <scutar_n@epitech.net>
 ##
 ## Started on  Tue Feb 23 16:56:01 2016 nathan scutari
-## Last update Fri Mar 18 16:19:35 2016 nathan scutari
+## Last update Fri Mar 18 16:58:26 2016 nathan scutari
 ##
 
 NAME	=	tetris
 
-SRCS	=	main.c			\
-		my_getnbr.c		\
-		get_next_line.c		\
-		speed.c			\
-		user_config.c		\
-		get_long_args.c		\
-		form_wordtab.c		\
-		help.c			\
-		sort_list.c		\
-		debug.c			\
-		tools.c			\
-		load_tetrimino.c	\
-		init_config.c		\
-		tetri_rotation.c	\
-		game_physic.c		\
-		end_game.c		\
-		fill_key.c		\
-		game_success.c		\
-		drop_bomb.c		\
-		key_control.c		\
-		display_dec.c		\
-		my_put_nbr.c		\
-		tetrimino_info.c
+SRCS	=	src/main.c		\
+		src/my_getnbr.c		\
+		src/speed.c		\
+		src/user_config.c	\
+		src/get_long_args.c	\
+		src/form_wordtab.c	\
+		src/help.c		\
+		src/debug.c		\
+		src/tools.c		\
+		src/load_tetrimino.c	\
+		src/init_config.c	\
+		src/tetri_rotation.c	\
+		src/game_physic.c	\
+		src/end_game.c		\
+		src/fill_key.c		\
+		src/game_success.c	\
+		src/drop_bomb.c		\
+		src/key_control.c	\
+		src/display_dec.c	\
+		src/my_put_nbr.c	\
+		src/tetrimino_info.c	\
+		src/get_long_args_bis.c	\
+		src/get_term.c		\
+		src/user_config_bis.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 LDFLAGS	=	-lncurses
 
-CFLAGS	=	-I.
+CFLAGS	=	-I./include
 
 $(NAME):	$(OBJS)
 		gcc -o $(NAME) $(OBJS) $(LDFLAGS)

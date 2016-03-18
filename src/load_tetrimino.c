@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Tue Feb 23 15:29:35 2016 nathan scutari
-** Last update Thu Mar  3 10:53:01 2016 nathan scutari
+** Last update Fri Mar 18 16:27:08 2016 Baptiste veyssiere
 */
 
 #include <sys/stat.h>
@@ -91,7 +91,7 @@ int	get_tetrimino_info(int fd, char *file, t_tetrimino **tetr)
   return (0);
 }
 
-int	load_tetriminos(t_tetrimino **tetri)
+int		load_tetriminos(t_tetrimino **tetri)
 {
   DIR		*dir;
   struct dirent	*file;

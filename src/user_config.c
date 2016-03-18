@@ -1,57 +1,16 @@
 /*
 ** user_config.c for tetris in /home/scutar_n/rendu/PSU/PSU_2015_tetris
-** 
+**
 ** Made by nathan scutari
 ** Login   <scutar_n@epitech.net>
-** 
+**
 ** Started on  Sat Mar  5 13:34:52 2016 nathan scutari
-** Last update Thu Mar 17 01:57:49 2016 nathan scutari
+** Last update Fri Mar 18 16:46:21 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
 #include <ncurses.h>
 #include <stdlib.h>
-#include <stdio.h>
-
-void	fill_compare(char **str, char *fill)
-{
-  int	x;
-
-  x = -1;
-  *str = malloc(my_strlen(fill) + 1);
-  while (fill[++x])
-    (*str)[x] = fill[x];
-  (*str)[x] = 0;
-}
-
-char 	**get_short_compare_table()
-{
-  char	**compare;
-
-  compare = malloc(sizeof(char *) * 10);
-  fill_compare(&compare[0], "-l");
-  fill_compare(&compare[1], "-kl");
-  fill_compare(&compare[2], "-kr");
-  fill_compare(&compare[3], "-kt");
-  fill_compare(&compare[4], "-kd");
-  fill_compare(&compare[5], "-kq");
-  fill_compare(&compare[6], "-kp");
-  fill_compare(&compare[7], "-w");
-  fill_compare(&compare[8], "-d");
-  compare[9] = 0;
-  return (compare);
-}
-
-int	compare_args(char *arg, char *compare)
-{
-  int	x;
-
-  x = -1;
-  while (compare[++x] && arg[x] == compare[x]);
-  if (arg[x] == 0 && compare[x] == 0)
-    return (1);
-  return (0);
-}
 
 int	get_control_config(char *arg, t_config *config, int i)
 {
@@ -116,11 +75,14 @@ int	get_next_config(int ac, char **av, int x,
   return (get_next_long_config(av, x, config));
 }
 
-int	user_config(int ac, char **av, t_config *config)
+int	user_config(char **av, t_config *config)
 {
   int	x;
   int	args;
+  int	ac;
 
+  ac = -1;
+  while (av[++ac] != NULL);
   x = 0;
   while (++x < ac)
     {
