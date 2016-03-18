@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Thu Mar 17 17:30:34 2016 Baptiste veyssiere
+** Last update Fri Mar 18 16:41:41 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -46,34 +46,41 @@ void	prep_screen()
   init_ioctl();
 }
 
-int	main(int ac, char **av, char **env)
+t_tetrimino	*init_main(char **av, char **env, t_config *config,
+			   t_tetrimino *tetri)
 {
-  t_config	config;
-  t_tetrimino	*tetri;
-  char		key[10];
-  int		c;
-  struct winsize	win;
-
   if (env == NULL)
-    return (-1);
+    return (NULL);
   srand(time(NULL));
   tetri = NULL;
-  c = 0;
-  key[0] = 0;
-  if (load_tetriminos(&tetri) == -1)
-    return (-1);
-  if (init_config(&config, tetri, env) == -1)
-    return (-1);
-  if  (user_config(ac, av, &config) == -1)
+  if (load_tetriminos(&tetri) == -1 ||
+      init_config(config, tetri, env) == -1)
+    return (NULL);
+  if  (user_config(av, config) == -1)
     {
       endwin();
-      return (1);
+      return (NULL);
     }
-  if (get_highscore(&config) == -1)
-    return (-1);
+  if (get_highscore(config) == -1)
+    return (NULL);
   prep_screen();
-  debug_part(config, tetri);
-  display_game(&config, 1);
+  debug_part(*config, tetri);
+  display_game(config, 1);
+  return (tetri);
+}
+
+int			main(int ac, char **av, char **env)
+{
+  t_config		config;
+  t_tetrimino		*tetri;
+  char			key[10];
+  int			c;
+  struct winsize	win;
+
+  if ((tetri = init_main(av, env, &config, tetri)) == NULL)
+    return (-1);
+  c = 0;
+  key[0] = 0;
   while (compare_key(key, config.quit) == 0)
     {
       ioctl(0, TIOCGWINSZ, &win);

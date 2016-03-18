@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Thu Mar 17 18:52:00 2016 Baptiste veyssiere
+** Last update Fri Mar 18 16:26:25 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -107,19 +107,6 @@ void	display_game(t_config *config, int form)
   refresh();
 }
 
-char	*get_term(char **env)
-{
-  char	*model;
-  int	i;
-
-  model = "TERM=";
-  i = -1;
-  while (env[++i] && !compare_largs(env[i], model));
-  if (!env[i])
-    return (NULL);
-  return (&env[i][5]);
-}
-
 int	init_config(t_config *config, t_tetrimino *tetri, char **env)
 {
   int	x;
@@ -127,7 +114,6 @@ int	init_config(t_config *config, t_tetrimino *tetri, char **env)
   int	i;
   char	*s;
 
-  x = -1;
   if (setupterm(get_term(env), 1, &i) == 1)
     return (-1);
   if ((s = tigetstr("smkx")) == NULL)
@@ -137,31 +123,9 @@ int	init_config(t_config *config, t_tetrimino *tetri, char **env)
   config->left = tigetstr("kcub1");
   config->right = tigetstr("kcuf1");
   config->turn = tigetstr("kcuu1");
-  /* fill_key(&config->right, "\033[C"); */
-  /* fill_key(&config->left, "\033[D"); */
-  /* fill_key(&config->turn, "\033[A"); */
-  /* fill_key(&config->drop, "\033[B"); */
   fill_key(&config->pause, " ");
   fill_key(&config->quit, "q");
-  config->played = 0;
-  config->speed = 5000;
-  config->brek = 0;
-  config->highscore = 0;
-  config->score = 0;
-  config->debug = 0;
-  config->hide = 0;
-  config->level = 1;
-  config->lines = 0;
-  config->time = time(NULL);
-  config->form = choose_tetrimino(tetri);
-  config->next = choose_tetrimino(tetri);
-  config->height = 20;
-  config->width = 10;
-  config->map = malloc(sizeof(char *) * config->height);
-  config->pos[0] = (config->width / 2) - (config->form->width / 2);
-  config->pos[1] = 0;
-  while (++x < config->height)
-    config->map[x] = malloc(config->width);
+  init_config_values(config, tetri);
   x = -1;
   while (++x < config->height)
     {
