@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Mar 18 16:45:31 2016 Baptiste veyssiere
-** Last update Fri Mar 18 16:46:08 2016 Baptiste veyssiere
+** Last update Fri Mar 18 23:20:20 2016 Baptiste veyssiere
 */
 
 #include <tetris.h>
@@ -48,4 +48,17 @@ int	compare_args(char *arg, char *compare)
   if (arg[x] == 0 && compare[x] == 0)
     return (1);
   return (0);
+}
+
+void	init_doublon(t_doublon *doublon)
+{
+  doublon->turn = 0;
+  doublon->drop = 0;
+  doublon->right = 0;
+  doublon->left = 0;
+  doublon->pause = 0;
+  doublon->quit = 0;
+  doublon->help = 0;
+  doublon->hide = 0;
+  doublon->debug = 0;
 }

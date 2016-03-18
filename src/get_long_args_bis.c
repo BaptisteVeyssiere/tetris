@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Mar 18 16:07:22 2016 Baptiste veyssiere
-** Last update Fri Mar 18 21:21:54 2016 Baptiste veyssiere
+** Last update Fri Mar 18 23:12:48 2016 Baptiste veyssiere
 */
 
 #include <tetris.h>
@@ -38,8 +38,14 @@ int	config_print(int i, t_config *config, char *str)
       return (-1);
     }
   else if (i == 9)
-    config->hide = 1;
+    {
+      config->hide = 1;
+      ++config->doublon.hide;
+    }
   else if (i == 10)
-    config->debug = 1;
+    {
+      config->debug = 1;
+      ++config->doublon.debug;
+    }
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Thu Mar 17 01:19:39 2016 nathan scutari
-** Last update Fri Mar 18 21:22:32 2016 Baptiste veyssiere
+** Last update Fri Mar 18 23:12:09 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -22,22 +22,40 @@ int	config_nbrs(int i, t_config *config, char *str)
 int	config_controls(int i, t_config *config, char *str)
 {
   if (i == 2)
-    config->left = &str[11];
+    {
+      config->left = &str[11];
+      ++config->doublon.left;
+    }
   else if (i == 3)
-    config->right = &str[12];
+    {
+      config->right = &str[12];
+      ++config->doublon.right;
+    }
   else if (i == 4)
-    config->turn = &str[11];
+    {
+      config->turn = &str[11];
+      ++config->doublon.turn;
+    }
   else if (i == 5)
-    config->drop = &str[11];
+    {
+      config->drop = &str[11];
+      ++config->doublon.drop;
+    }
   return (0);
 }
 
 int	config_pandq(int i, t_config *config, char *str)
 {
   if (i == 6)
-    config->quit = &str[11];
+    {
+      config->quit = &str[11];
+      ++config->doublon.quit;
+    }
   else if (i == 7)
-    config->pause = &str[12];
+    {
+      config->pause = &str[12];
+      ++config->doublon.pause;
+    }
   return (0);
 }
 

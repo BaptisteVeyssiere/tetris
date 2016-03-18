@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Fri Mar 18 22:29:38 2016 Baptiste veyssiere
+** Last update Fri Mar 18 23:18:12 2016 Baptiste veyssiere
 */
 
 #ifndef TETRIS_H_
@@ -24,6 +24,19 @@ typedef struct		s_tetrimino
   char			**form;
   struct s_tetrimino	*next;
 }			t_tetrimino;
+
+typedef struct
+{
+  char			turn;
+  char			drop;
+  char			left;
+  char			right;
+  char			quit;
+  char			pause;
+  char			hide;
+  char			debug;
+  char			help;
+}			t_doublon;
 
 typedef struct          s_config
 {
@@ -50,6 +63,7 @@ typedef struct          s_config
   char                  **map;
   t_tetrimino           *form;
   t_tetrimino           *next;
+  t_doublon		doublon;
 }                       t_config;
 
 /*
