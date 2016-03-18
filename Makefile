@@ -5,7 +5,7 @@
 ## Login   <scutar_n@epitech.net>
 ##
 ## Started on  Tue Feb 23 16:56:01 2016 nathan scutari
-## Last update Thu Mar 17 15:00:49 2016 nathan scutari
+## Last update Fri Mar 18 16:19:35 2016 nathan scutari
 ##
 
 NAME	=	tetris
@@ -18,6 +18,7 @@ SRCS	=	main.c			\
 		get_long_args.c		\
 		form_wordtab.c		\
 		help.c			\
+		sort_list.c		\
 		debug.c			\
 		tools.c			\
 		load_tetrimino.c	\

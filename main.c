@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Thu Mar 17 17:30:34 2016 Baptiste veyssiere
+** Last update Fri Mar 18 16:51:12 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -71,8 +71,8 @@ int	main(int ac, char **av, char **env)
     }
   if (get_highscore(&config) == -1)
     return (-1);
+  debug_part(&config, tetri);
   prep_screen();
-  debug_part(config, tetri);
   display_game(&config, 1);
   while (compare_key(key, config.quit) == 0)
     {

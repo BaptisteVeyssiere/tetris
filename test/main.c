@@ -15,6 +15,7 @@ struct termios		init_ioctl()
   term.c_lflag &= ~(ECHO | ICANON);
   term.c_cc[VMIN] = 0;
   term.c_cc[VTIME] = 0;
+
   if (ioctl(0, TCSETS, &term) != 0)
     printf("ioctl S prob\n");
   return (copy);
