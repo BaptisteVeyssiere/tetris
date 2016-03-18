@@ -5,7 +5,7 @@
 ## Login   <scutar_n@epitech.net>
 ##
 ## Started on  Tue Feb 23 16:56:01 2016 nathan scutari
-## Last update Fri Mar 18 16:58:26 2016 nathan scutari
+## Last update Fri Mar 18 17:08:56 2016 nathan scutari
 ##
 
 NAME	=	tetris
@@ -30,6 +30,7 @@ SRCS	=	src/main.c		\
 		src/key_control.c	\
 		src/display_dec.c	\
 		src/my_put_nbr.c	\
+		src/sort_list.c		\
 		src/tetrimino_info.c	\
 		src/get_long_args_bis.c	\
 		src/get_term.c		\

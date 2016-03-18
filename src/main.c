@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Fri Mar 18 17:02:06 2016 nathan scutari
+** Last update Fri Mar 18 17:09:50 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -61,11 +61,11 @@ t_tetrimino	*init_main(char **av, char **env, t_config *config,
       endwin();
       return (NULL);
     }
-  if (get_highscore(&config) == -1)
+  if (get_highscore(config) == -1)
     return (NULL);
-  debug_part(&config, tetri);
+  debug_part(config, tetri);
   prep_screen();
-  display_game(&config, 1);
+  display_game(config, 1);
   return (tetri);
 }
 
