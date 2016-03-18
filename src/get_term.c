@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Mar 18 16:10:47 2016 Baptiste veyssiere
-** Last update Fri Mar 18 16:23:30 2016 Baptiste veyssiere
+** Last update Fri Mar 18 17:18:48 2016 nathan scutari
 */
 
 #include <tetris.h>
@@ -32,6 +32,7 @@ void	init_config_values(t_config *config, t_tetrimino *tetri)
   config->speed = 5000;
   config->brek = 0;
   config->highscore = 0;
+  config->combo = 0;
   config->score = 0;
   config->debug = 0;
   config->hide = 0;

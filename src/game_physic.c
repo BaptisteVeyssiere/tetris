@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Thu Mar  3 10:55:39 2016 nathan scutari
-** Last update Mon Mar  7 20:02:53 2016 nathan scutari
+** Last update Fri Mar 18 17:25:25 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -45,10 +45,28 @@ void	moving_in_non_movings(t_config *config)
     }
 }
 
+int	combo_score(int	combo, int level)
+{
+  int	score;
+
+  score = 0;
+  if (combo == 1)
+    score = 40 * level;
+  else if (combo == 2)
+    score = 100 * level;
+  else if (combo == 3)
+    score = 300 * level;
+  else if (combo >= 4)
+    score = 1200 * level;
+  return (score);
+}
+
 int	new_form(t_config *config, t_tetrimino *tetri)
 {
   moving_in_non_movings(config);
+  config->combo = 0;
   is_line_complete(config);
+  config->score += combo_score(config->combo, config->level);
   config->form = config->next;
   config->pos[1] = 0;
   config->pos[0] = ((config->width / 2) -

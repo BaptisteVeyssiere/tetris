@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Thu Mar  3 14:44:34 2016 nathan scutari
-** Last update Thu Mar 17 14:31:13 2016 nathan scutari
+** Last update Fri Mar 18 17:21:57 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -26,8 +26,8 @@ void	line_complete(t_config *config, int y)
 	config->map[y][x] = config->map[y - 1][x];
       y--;
     }
-  config->score += 100 * config->level;
   config->lines++;
+  config->combo++;
   if (config->lines == 10)
     {
       config->lines = 0;
