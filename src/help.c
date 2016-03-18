@@ -1,18 +1,20 @@
 /*
 ** help.c for tetris in /home/scutar_n/rendu/PSU/PSU_2015_tetris
-** 
+**
 ** Made by nathan scutari
 ** Login   <scutar_n@epitech.net>
-** 
+**
 ** Started on  Thu Mar 17 01:58:41 2016 nathan scutari
-** Last update Thu Mar 17 02:05:38 2016 nathan scutari
+** Last update Fri Mar 18 21:19:33 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
 
-void	display_help()
+void	display_help(char *str)
 {
-  my_putstr("Usage: ./tetris [options]\n");
+  my_putstr("Usage: ");
+  my_putstr(str);
+  my_putstr(" [options]\n");
   my_putstr("Options:\n  ");
   my_putstr("--help                 Display this help\n  ");
   my_putstr("-l --level={num}       Start Tetris at level num\n  ");

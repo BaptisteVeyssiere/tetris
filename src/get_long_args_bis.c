@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Mar 18 16:07:22 2016 Baptiste veyssiere
-** Last update Fri Mar 18 16:08:53 2016 Baptiste veyssiere
+** Last update Fri Mar 18 21:21:54 2016 Baptiste veyssiere
 */
 
 #include <tetris.h>
@@ -30,11 +30,11 @@ char	**get_long_compare_table()
   return (compare);
 }
 
-int	config_print(int i, t_config *config)
+int	config_print(int i, t_config *config, char *str)
 {
   if (i == 0)
     {
-      display_help();
+      display_help(str);
       return (-1);
     }
   else if (i == 9)

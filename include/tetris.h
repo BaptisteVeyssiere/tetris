@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Fri Mar 18 18:49:20 2016 nathan scutari
+** Last update Fri Mar 18 22:29:38 2016 Baptiste veyssiere
 */
 
 #ifndef TETRIS_H_
@@ -112,7 +112,7 @@ void	is_line_complete(t_config*);
 **get_long_args_bis.c
 */
 char	**get_long_compare_table();
-int	config_print(int, t_config*);
+int	config_print(int, t_config*, char*);
 
 /*
 **get_long_args.c
