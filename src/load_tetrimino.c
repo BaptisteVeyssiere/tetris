@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Tue Feb 23 15:29:35 2016 nathan scutari
-** Last update Fri Mar 18 16:27:08 2016 Baptiste veyssiere
+** Last update Sat Mar 19 23:17:52 2016 Baptiste veyssiere
 */
 
 #include <sys/stat.h>
@@ -97,12 +97,15 @@ int		load_tetriminos(t_tetrimino **tetri)
   struct dirent	*file;
   int		fd;
   char		*fullname;
+  int		counter;
 
+  counter = 0;
   if ((dir = opendir("./tetriminos")) == NULL)
     return (my_perror("Error : can not open tetriminos directory\n"));
   while ((file = readdir(dir)) != NULL)
     if (file->d_name[0] != '.' && is_tetrimino(file->d_name))
       {
+	++counter;
 	fullname = get_fullname(file->d_name);
 	if ((fd = open(fullname, O_RDONLY)) == -1)
 	  return (-1);
@@ -111,6 +114,8 @@ int		load_tetriminos(t_tetrimino **tetri)
 	  return (-1);
 	close(fd);
       }
+  if (counter == 0)
+    return (my_perror("No tetrimino detected\n"));
   closedir(dir);
   return (0);
 }
