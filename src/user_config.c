@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Sat Mar  5 13:34:52 2016 nathan scutari
-** Last update Fri Mar 18 23:17:51 2016 Baptiste veyssiere
+** Last update Sat Mar 19 14:40:58 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -119,7 +119,11 @@ int	user_config(char **av, t_config *config)
       config->doublon.right > 1 || config->doublon.left > 1 ||
       config->doublon.pause > 1 || config->doublon.quit > 1 ||
       config->doublon.hide > 1 || config->doublon.debug > 1 ||
-      config->doublon.help > 1)
+      config->doublon.help > 1 ||
+      (config->left != NULL && config->left[0] == 0) ||
+      (config->right != NULL && config->right[0] == 0) ||
+      (config->drop != NULL && config->drop[0] == 0) ||
+      (config->turn != NULL && config->turn[0] == 0))
     return (-1);
   return (0);
 }
