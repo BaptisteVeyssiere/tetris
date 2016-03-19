@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Sat Mar 19 13:46:17 2016 nathan scutari
+** Last update Sat Mar 19 23:08:59 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -53,9 +53,6 @@ int	init_sequences(t_config *config, char **env)
 
   if (setupterm(get_term(env), 1, &i) == 1 || i != 1)
     return (-1);
-  if ((s = tigetstr("smkx")) == NULL)
-    return (-1);
-  write(1, s, my_strlen(s));
   if (config->drop == NULL)
     config->drop = tigetstr("kcud1");
   if (config->left == NULL)
@@ -63,7 +60,7 @@ int	init_sequences(t_config *config, char **env)
   if (config->right == NULL)
     config->right = tigetstr("kcuf1");
   if (config->turn == NULL)
-    config->turn = tigetstr("kcuu1");  
+    config->turn = tigetstr("kcuu1");
 }
 
 t_tetrimino	*init_main(char **av, char **env, t_config *config,
@@ -78,12 +75,11 @@ t_tetrimino	*init_main(char **av, char **env, t_config *config,
     return (NULL);
   if  (user_config(av, config) == -1)
     {
-      endwin();
+      write(2, "Error: bad parameter\n", 21);
       return (NULL);
     }
-  if (init_sequences(config, env) == -1)
-    return (NULL);
-  if (get_highscore(config) == -1)
+  if (init_sequences(config, env) == -1 ||
+      get_highscore(config) == -1)
     return (NULL);
   debug_part(config, &tetri);
   prep_screen();

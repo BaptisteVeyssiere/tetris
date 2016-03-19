@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Sat Mar 19 13:41:23 2016 nathan scutari
+** Last update Sat Mar 19 15:16:01 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
@@ -119,4 +119,5 @@ int	init_config(t_config *config, t_tetrimino *tetri, char **env)
       while (++y < config->width)
 	config->map[x][y] = 0;
     }
+  return (0);
 }
