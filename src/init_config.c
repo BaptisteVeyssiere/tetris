@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Fri Mar 18 22:30:37 2016 Baptiste veyssiere
+** Last update Sat Mar 19 13:41:23 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -104,18 +104,11 @@ int	init_config(t_config *config, t_tetrimino *tetri, char **env)
 {
   int	x;
   int	y;
-  int	i;
-  char	*s;
 
-  if (setupterm(get_term(env), 1, &i) == 1 || i != 1)
-    return (-1);
-  if ((s = tigetstr("smkx")) == NULL)
-    return (-1);
-  write(1, s, my_strlen(s));
-  config->drop = tigetstr("kcud1");
-  config->left = tigetstr("kcub1");
-  config->right = tigetstr("kcuf1");
-  config->turn = tigetstr("kcuu1");
+  config->drop = NULL;
+  config->left = NULL;
+  config->right = NULL;
+  config->turn = NULL;
   fill_key(&config->pause, " ");
   fill_key(&config->quit, "q");
   init_config_values(config, tetri);

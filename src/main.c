@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Fri Mar 18 22:30:52 2016 Baptiste veyssiere
+** Last update Sat Mar 19 13:46:17 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -46,6 +46,26 @@ void	prep_screen()
   init_ioctl();
 }
 
+int	init_sequences(t_config *config, char **env)
+{
+  int	i;
+  char	*s;
+
+  if (setupterm(get_term(env), 1, &i) == 1 || i != 1)
+    return (-1);
+  if ((s = tigetstr("smkx")) == NULL)
+    return (-1);
+  write(1, s, my_strlen(s));
+  if (config->drop == NULL)
+    config->drop = tigetstr("kcud1");
+  if (config->left == NULL)
+    config->left = tigetstr("kcub1");
+  if (config->right == NULL)
+    config->right = tigetstr("kcuf1");
+  if (config->turn == NULL)
+    config->turn = tigetstr("kcuu1");  
+}
+
 t_tetrimino	*init_main(char **av, char **env, t_config *config,
 			   t_tetrimino *tetri)
 {
@@ -54,13 +74,15 @@ t_tetrimino	*init_main(char **av, char **env, t_config *config,
   srand(time(NULL));
   tetri = NULL;
   if (load_tetriminos(&tetri) == -1 ||
-      init_config(config, tetri, env) == -1)
+    init_config(config, tetri, env) == -1)
     return (NULL);
   if  (user_config(av, config) == -1)
     {
       endwin();
       return (NULL);
     }
+  if (init_sequences(config, env) == -1)
+    return (NULL);
   if (get_highscore(config) == -1)
     return (NULL);
   debug_part(config, &tetri);
@@ -99,5 +121,5 @@ int			main(int ac, char **av, char **env)
 	}
       usleep(get_speed(config.speed, config.level));
     }
-    endwin();
+  endwin();
 }

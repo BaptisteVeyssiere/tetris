@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Fri Mar 18 23:18:12 2016 Baptiste veyssiere
+** Last update Sat Mar 19 13:43:18 2016 nathan scutari
 */
 
 #ifndef TETRIS_H_
@@ -179,6 +179,7 @@ int	load_tetriminos(t_tetrimino**);
 */
 void		init_ioctl();
 void		prep_screen();
+int		init_sequences(t_config *, char **);
 t_tetrimino	*init_main(char**, char**, t_config*, t_tetrimino*);
 int		main(int, char**, char**);
 

@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Fri Mar  4 21:26:10 2016 nathan scutari
-** Last update Thu Mar 17 03:01:09 2016 nathan scutari
+** Last update Sat Mar 19 13:24:42 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -17,6 +17,7 @@
 int	save_scores(t_config *config)
 {
   char	*str;
+  char	buf[2];
   int	fd;
   int	highscore;
 
@@ -37,7 +38,7 @@ int	save_scores(t_config *config)
     mvprintw(0, 0, "You did not beat the highscore which is %d..Try again !\n",
 	     highscore);
   printw("Your score is : %d\nPress any key to quit", config->score);
-  getch();
+  read(0, buf, 1);
   return (0);
 }
 
