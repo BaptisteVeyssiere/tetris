@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Tue Feb 23 15:29:35 2016 nathan scutari
-** Last update Sat Mar 19 23:17:52 2016 Baptiste veyssiere
+** Last update Sun Mar 20 15:27:42 2016 nathan scutari
 */
 
 #include <sys/stat.h>
@@ -105,13 +105,14 @@ int		load_tetriminos(t_tetrimino **tetri)
   while ((file = readdir(dir)) != NULL)
     if (file->d_name[0] != '.' && is_tetrimino(file->d_name))
       {
-	++counter;
 	fullname = get_fullname(file->d_name);
 	if ((fd = open(fullname, O_RDONLY)) == -1)
 	  return (-1);
 	free(fullname);
 	if (get_tetrimino_info(fd, file->d_name, tetri) == -1)
 	  return (-1);
+	if ((*tetri)->error == 0)
+	  ++counter;
 	close(fd);
       }
   if (counter == 0)
