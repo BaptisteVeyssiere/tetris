@@ -5,10 +5,11 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Tue Feb 23 15:41:25 2016 nathan scutari
-** Last update Wed Mar  2 16:59:09 2016 nathan scutari
+** Last update Sun Mar 20 13:18:07 2016 nathan scutari
 */
 
 #include "tetris.h"
+#include "get_next_line.h"
 #include <stdlib.h>
 
 int	get_width(int fd)
@@ -71,28 +72,26 @@ int	get_color(int fd)
 int	check_form(int fd, int width, int height, char ***form)
 {
   char	buffer[2];
+  char	*verify;
   int	ret;
   int	x;
   int	y;
 
-  x = -1;
+  y = -1;
   if ((*form = get_form_wordtab(width, height)) == NULL)
     return (-1);
-  while (++x < height)
-    {
-      y = -1;
-      while (++y < width)
-	{
-	  ret = read(fd, buffer, 1);
-	  if ((buffer[0] != '*' && buffer[0] != ' ') || ret == 0)
-	    return (-1);
-	  (*form)[x][y] = buffer[0];
-	}
-      if ((x != height - 1 && read(fd, buffer, 1) && buffer[0] != '\n'))
+  while (++y < height)
+    if (((*form)[y] = get_next_line(fd)) == NULL)
+      return (-1);
+  y = -1;
+  x = -1;
+  if ((verify = get_next_line(fd)) != NULL)
+    while (verify[++x])
+      if (verify[x] == '*')
 	return (-1);
-    }
-  if ((read(fd, buffer, 1) != 0 && buffer[0] != '\n') ||
-      read(fd, buffer, 1) != 0)
+  if (verify_lines(*form, height, width) == -1)
+    return (-1);
+  if (verify_columns(*form, height, width) == -1)
     return (-1);
   return (0);
 }

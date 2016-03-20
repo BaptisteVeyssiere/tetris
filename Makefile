@@ -5,13 +5,15 @@
 ## Login   <scutar_n@epitech.net>
 ##
 ## Started on  Tue Feb 23 16:56:01 2016 nathan scutari
-## Last update Sat Mar 19 23:18:44 2016 Baptiste veyssiere
+## Last update Sun Mar 20 13:15:54 2016 nathan scutari
 ##
 
 NAME	=	tetris
 
 SRCS	=	src/main.c		\
 		src/my_getnbr.c		\
+		src/check_tetriminos.c	\
+		src/get_next_line.c	\
 		src/speed.c		\
 		src/user_config.c	\
 		src/get_long_args.c	\

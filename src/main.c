@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Sat Mar 19 23:08:59 2016 Baptiste veyssiere
+** Last update Sun Mar 20 12:47:47 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -33,6 +33,7 @@ void	prep_screen()
   start_color();
   use_default_colors();
   raw();
+  keypad(stdscr, 1);
   set_escdelay(1);
   noecho();
   curs_set(0);

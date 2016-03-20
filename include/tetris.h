@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Sat Mar 19 13:43:18 2016 nathan scutari
+** Last update Sun Mar 20 13:19:38 2016 nathan scutari
 */
 
 #ifndef TETRIS_H_
@@ -246,5 +246,16 @@ int	get_other_config(char*, t_config*, int);
 int	get_wd(t_config*, int);
 int	get_next_config(int, char**, int, t_config*);
 int	user_config(char**, t_config*);
+
+/*
+**check_tetriminos.c
+*/
+int	verify_lines(char **, int, int);
+int	verify_columns(char **, int, int);
+
+/*
+**get_next_line.c
+*/
+char	*get_next_line(int);
 
 #endif /* !TETRIS_H_ */
