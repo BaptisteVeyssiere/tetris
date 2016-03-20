@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Fri Mar  4 21:26:10 2016 nathan scutari
-** Last update Sat Mar 19 13:24:42 2016 nathan scutari
+** Last update Sun Mar 20 14:00:53 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -70,7 +70,10 @@ int	get_highscore(t_config *config)
   char	*str;
 
   if ((fd = open("stats/score", O_RDWR)) == -1)
-    return (-1);
+    {
+      config->highscore = 0;
+      return (0);
+    }
   read(fd, &(config->highscore), 4);
   close(fd);
   return (0);
