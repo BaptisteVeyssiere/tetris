@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 ** 
 ** Started on  Thu Mar 17 00:54:16 2016 nathan scutari
-** Last update Fri Mar 18 22:26:12 2016 nathan scutari
+** Last update Sun Mar 20 14:34:55 2016 nathan scutari
 */
 
 #include "tetris.h"
@@ -72,7 +72,7 @@ void		clean_list(t_tetrimino **tetri)
   sort_error_list(tetri);
   tmp = *tetri;
   previous = NULL;
-  while (tmp->error == 0 && tmp != NULL)
+  while (tmp != NULL && tmp->error == 0)
     {
       previous = tmp;
       tmp = tmp->next;
