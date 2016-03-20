@@ -5,14 +5,30 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Sun Mar 20 13:19:38 2016 nathan scutari
+** Last update Sun Mar 20 20:04:14 2016 Baptiste veyssiere
 */
 
 #ifndef TETRIS_H_
 # define TETRIS_H_
 
+# define _DEFAULT_SOURCE
+# define UNUSED __attribute__((unused))
+
 # include <stdlib.h>
+# include <ncurses.h>
+# include <sys/ioctl.h>
 # include <unistd.h>
+# include <time.h>
+# include <termios.h>
+# include <ncurses/curses.h>
+# include <term.h>
+# include <sys/types.h>
+# include <dirent.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+
+# undef lines
+# undef tab
 
 typedef struct		s_tetrimino
 {
@@ -38,7 +54,7 @@ typedef struct
   char			help;
 }			t_doublon;
 
-typedef struct          s_config
+typedef struct
 {
   char                  *right;
   char                  *left;
@@ -72,6 +88,8 @@ typedef struct          s_config
 void	my_debugstr(char*);
 void	print_keys(t_config*);
 void	debug_part(t_config*, t_tetrimino**);
+void    clean_list(t_tetrimino**);
+void    print_form(t_tetrimino*);
 
 /*
 **display_dec.c
@@ -141,12 +159,12 @@ int	get_next_long_config(char**, int, t_config*);
 **get_term.c
 */
 char	*get_term(char**);
-void	init_config_values(t_config*, t_tetrimino*);
+void	init_config_values(t_config*);
 
 /*
 **help.c
 */
-void	display_help();
+void	display_help(char*);
 
 /*
 **init_config.c
@@ -155,7 +173,7 @@ t_tetrimino	*choose_tetrimino(t_tetrimino*);
 void		display_non_movings(t_config*);
 void		display_moving(t_config*);
 void		display_game(t_config*, int);
-int		init_config(t_config*, t_tetrimino*, char**);
+int		init_config(t_config*);
 
 /*
 **key_control.c
@@ -163,7 +181,7 @@ int		init_config(t_config*, t_tetrimino*, char**);
 void	right_move(t_config*);
 void	left_move(t_config*);
 void	is_movement_key(char*, t_config*, t_tetrimino*);
-void	jey_control(char*, t_config*, t_tetrimino*);
+void	key_control(char*, t_config*, t_tetrimino*);
 
 /*
 **load_tetrimino.c
@@ -201,6 +219,7 @@ int	my_put_nbr(int);
 void	sort_list(t_tetrimino**);
 int	compare_size(t_tetrimino*, t_tetrimino*);
 void	swap_list(t_tetrimino*, t_tetrimino*, t_tetrimino*, t_tetrimino**);
+void    sort_error_list(t_tetrimino**);
 
 /*
 **speed.c
@@ -237,6 +256,8 @@ int	my_perror(char*);
 void	fill_compare(char**, char*);
 char	**get_short_compare_table();
 int	comare_args(char*, char*);
+int     compare_args(char*, char*);
+void    init_doublon(t_doublon*);
 
 /*
 **user_config.c
@@ -244,7 +265,7 @@ int	comare_args(char*, char*);
 int	get_control_config(char*, t_config*, int);
 int	get_other_config(char*, t_config*, int);
 int	get_wd(t_config*, int);
-int	get_next_config(int, char**, int, t_config*);
+int	get_next_config(char**, int, t_config*);
 int	user_config(char**, t_config*);
 
 /*

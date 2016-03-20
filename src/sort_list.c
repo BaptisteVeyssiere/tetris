@@ -5,13 +5,12 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Sat Feb 27 17:17:35 2016 Baptiste veyssiere
-** Last update Fri Mar 18 22:22:52 2016 nathan scutari
+** Last update Sun Mar 20 19:58:27 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
-#include <stdlib.h>
 
-int             check_error(t_tetrimino *current, t_tetrimino *next)
+int	check_error(t_tetrimino *current, t_tetrimino *next)
 {
   if (current->error > next->error)
     return (1);

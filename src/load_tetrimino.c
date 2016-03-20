@@ -5,15 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Tue Feb 23 15:29:35 2016 nathan scutari
-** Last update Sun Mar 20 15:27:42 2016 nathan scutari
+** Last update Sun Mar 20 19:55:57 2016 Baptiste veyssiere
 */
 
-#include <sys/stat.h>
 #include "tetris.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <dirent.h>
 
 void	print_info(int width, int height, int color, char *file)
 {
@@ -68,7 +63,6 @@ int	get_tetrimino_info(int fd, char *file, t_tetrimino **tetr)
   int	height;
   int	color;
   char	**form;
-  int	x;
 
   form = NULL;
   if (tetri_in_list(tetr) == -1)
@@ -87,7 +81,6 @@ int	get_tetrimino_info(int fd, char *file, t_tetrimino **tetr)
       (*tetr)->error = 0;
     }
   (*tetr)->name = get_name(file);
-  x = -1;
   return (0);
 }
 
@@ -99,8 +92,7 @@ int		load_tetriminos(t_tetrimino **tetri)
   char		*fullname;
   int		counter;
 
-  counter = 0;
-  if ((dir = opendir("./tetriminos")) == NULL)
+  if ((counter = 0) == 0 && (dir = opendir("./tetriminos")) == NULL)
     return (my_perror("Error : can not open tetriminos directory\n"));
   while ((file = readdir(dir)) != NULL)
     if (file->d_name[0] != '.' && is_tetrimino(file->d_name))

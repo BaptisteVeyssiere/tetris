@@ -1,22 +1,17 @@
 /*
 ** end_game.c for tetris in /home/scutar_n/rendu/PSU/PSU_2015_tetris
-** 
+**
 ** Made by nathan scutari
 ** Login   <scutar_n@epitech.net>
-** 
+**
 ** Started on  Fri Mar  4 21:26:10 2016 nathan scutari
-** Last update Sun Mar 20 14:00:53 2016 nathan scutari
+** Last update Sun Mar 20 19:44:01 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
-#include <ncurses.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 int	save_scores(t_config *config)
 {
-  char	*str;
   char	buf[2];
   int	fd;
   int	highscore;
@@ -67,7 +62,6 @@ int	end_game(t_config *config, char *key)
 int	get_highscore(t_config *config)
 {
   int	fd;
-  char	*str;
 
   if ((fd = open("stats/score", O_RDWR)) == -1)
     {

@@ -1,17 +1,14 @@
 /*
 ** display_dec.c for tetris in /home/scutar_n/rendu/PSU/PSU_2015_tetris
-** 
+**
 ** Made by nathan scutari
 ** Login   <scutar_n@epitech.net>
-** 
+**
 ** Started on  Thu Mar  3 13:28:21 2016 nathan scutari
-** Last update Thu Mar 17 02:47:27 2016 nathan scutari
+** Last update Sun Mar 20 19:43:49 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
-#include <time.h>
-#include <ncurses.h>
-#include <stdlib.h>
 
 void	bottom_and_stats(t_config *config)
 {

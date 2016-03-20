@@ -5,7 +5,7 @@
 ## Login   <scutar_n@epitech.net>
 ##
 ## Started on  Tue Feb 23 16:56:01 2016 nathan scutari
-## Last update Sun Mar 20 13:15:54 2016 nathan scutari
+## Last update Sun Mar 20 20:01:07 2016 Baptiste veyssiere
 ##
 
 NAME	=	tetris
@@ -36,13 +36,14 @@ SRCS	=	src/main.c		\
 		src/tetrimino_info.c	\
 		src/get_long_args_bis.c	\
 		src/get_term.c		\
-		src/user_config_bis.c
+		src/user_config_bis.c	\
+		src/debug_bis.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 LDFLAGS	=	-lncurses
 
-CFLAGS	=	-I./include
+CFLAGS	=	-W -Wall -Wextra -Werror -ansi -pedantic -I./include
 
 $(NAME):	$(OBJS)
 		gcc -o $(NAME) $(OBJS) $(LDFLAGS)

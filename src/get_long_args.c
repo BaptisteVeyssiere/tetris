@@ -5,11 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Thu Mar 17 01:19:39 2016 nathan scutari
-** Last update Fri Mar 18 23:12:09 2016 Baptiste veyssiere
+** Last update Sun Mar 20 19:44:52 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
-#include <stdlib.h>
 
 int	config_nbrs(int i, t_config *config, char *str)
 {

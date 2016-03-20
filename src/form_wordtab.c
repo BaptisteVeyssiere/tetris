@@ -5,11 +5,9 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 11:50:58 2016 nathan scutari
-** Last update Fri Mar 18 17:34:43 2016 Baptiste veyssiere
+** Last update Sun Mar 20 19:44:22 2016 Baptiste veyssiere
 */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "tetris.h"
 
 char	**get_form_wordtab(int width, int height)

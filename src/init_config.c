@@ -5,14 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 22:52:10 2016 nathan scutari
-** Last update Sun Mar 20 14:10:56 2016 nathan scutari
+** Last update Sun Mar 20 19:45:35 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
-#include <stdlib.h>
-#include <time.h>
-#include <ncurses.h>
-#include <curses.h>
 
 t_tetrimino	*choose_tetrimino(t_tetrimino *tetri)
 {
@@ -100,7 +96,7 @@ void	display_game(t_config *config, int form)
   refresh();
 }
 
-int	init_config(t_config *config, t_tetrimino *tetri, char **env)
+int	init_config(t_config *config)
 {
   int	x;
   int	y;
@@ -111,7 +107,7 @@ int	init_config(t_config *config, t_tetrimino *tetri, char **env)
   config->turn = NULL;
   fill_key(&config->pause, " ");
   fill_key(&config->quit, "q");
-  init_config_values(config, tetri);
+  init_config_values(config);
   x = -1;
   while (++x < config->height)
     {

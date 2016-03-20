@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Fri Jan 15 14:42:53 2016 nathan scutari
-** Last update Sun Mar 20 13:19:40 2016 nathan scutari
+** Last update Sun Mar 20 19:28:15 2016 Baptiste veyssiere
 */
 
 #include "get_next_line.h"
@@ -99,7 +99,7 @@ char		*get_next_line(int fd)
   line = NULL;
   if (verify_buffer(buffer, &offset, &line) == 1)
     return (line);
-  while (ret = read(fd, buff, READ_SIZE))
+  while ((ret = read(fd, buff, READ_SIZE)))
     {
       if (ret == -1)
 	return (NULL);

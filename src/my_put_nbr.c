@@ -5,8 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Nov 25 14:09:32 2015 nathan scutari
-** Last update Fri Mar 18 17:50:16 2016 Baptiste veyssiere
+** Last update Sun Mar 20 19:39:04 2016 Baptiste veyssiere
 */
+
+#include "tetris.h"
 
 int	my_put_nbr(int nbr)
 {

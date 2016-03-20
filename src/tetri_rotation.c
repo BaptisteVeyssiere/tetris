@@ -1,15 +1,14 @@
 /*
 ** tetri_rotation.c for tetris in /home/scutar_n/rendu/PSU/PSU_2015_tetris
-** 
+**
 ** Made by nathan scutari
 ** Login   <scutar_n@epitech.net>
-** 
+**
 ** Started on  Thu Mar  3 16:03:22 2016 nathan scutari
-** Last update Fri Mar 18 22:43:52 2016 nathan scutari
+** Last update Sun Mar 20 19:47:37 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
-#include <stdlib.h>
 
 int	rotation_ok(t_config *config, char **new_tetri)
 {
@@ -76,7 +75,6 @@ int	turn_tetri(t_config *config)
 {
   char	**new_tetri;
   int	x;
-  int	y;
 
   if ((new_tetri = malloc(sizeof(char *) * config->form->width + 1)) == NULL)
     return (-1);
@@ -88,8 +86,8 @@ int	turn_tetri(t_config *config)
       new_tetri[x][config->form->height] = 0;
     }
   new_tetri[config->form->width] = 0;
-  y = -1;
   rotation_tetri(config, new_tetri);
   free_and_replace(config, new_tetri);
   display_game(config, 1);
+  return (0);
 }

@@ -5,12 +5,11 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Tue Feb 23 15:41:25 2016 nathan scutari
-** Last update Sun Mar 20 13:18:07 2016 nathan scutari
+** Last update Sun Mar 20 19:47:23 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
 #include "get_next_line.h"
-#include <stdlib.h>
 
 int	get_width(int fd)
 {
@@ -71,9 +70,7 @@ int	get_color(int fd)
 
 int	check_form(int fd, int width, int height, char ***form)
 {
-  char	buffer[2];
   char	*verify;
-  int	ret;
   int	x;
   int	y;
 

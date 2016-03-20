@@ -5,17 +5,13 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Sat Mar  5 13:34:52 2016 nathan scutari
-** Last update Sat Mar 19 14:40:58 2016 Baptiste veyssiere
+** Last update Sun Mar 20 19:48:01 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
-#include <ncurses.h>
-#include <stdlib.h>
 
 int	get_control_config(char *arg, t_config *config, int i)
 {
-  int	key;
-
   if (arg == 0)
     return (-1);
   if (i == 1)
@@ -76,8 +72,7 @@ int	get_wd(t_config *config, int i)
   return (0);
 }
 
-int	get_next_config(int ac, char **av, int x,
-			t_config *config)
+int	get_next_config(char **av, int x, t_config *config)
 {
   int	i;
   char	**compare;
@@ -111,7 +106,7 @@ int	user_config(char **av, t_config *config)
   x = 0;
   while (++x < ac)
     {
-      if ((args = get_next_config(ac, av, x, config)) == -1)
+      if ((args = get_next_config(av, x, config)) == -1)
 	return (-1);
       x += args;
     }

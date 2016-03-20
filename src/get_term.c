@@ -5,7 +5,7 @@
 ** Login   <VEYSSI_B@epitech.net>
 **
 ** Started on  Fri Mar 18 16:10:47 2016 Baptiste veyssiere
-** Last update Fri Mar 18 20:27:55 2016 nathan scutari
+** Last update Sun Mar 20 19:40:27 2016 Baptiste veyssiere
 */
 
 #include <tetris.h>
@@ -23,7 +23,7 @@ char	*get_term(char **env)
   return (&env[i][5]);
 }
 
-void	init_config_values(t_config *config, t_tetrimino *tetri)
+void	init_config_values(t_config *config)
 {
   int	x;
 

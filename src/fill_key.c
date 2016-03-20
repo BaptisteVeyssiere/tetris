@@ -5,11 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Thu Mar 10 22:52:37 2016 nathan scutari
-** Last update Thu Mar 17 16:40:24 2016 Baptiste veyssiere
+** Last update Sun Mar 20 19:44:14 2016 Baptiste veyssiere
 */
 
-#include <stdlib.h>
-#include <tetris.h>
+#include "tetris.h"
 
 void	fill_key(char **str, char *end)
 {

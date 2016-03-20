@@ -5,11 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Thu Feb 11 21:13:21 2016 nathan scutari
-** Last update Tue Feb 23 16:09:21 2016 nathan scutari
+** Last update Sun Mar 20 19:36:38 2016 Baptiste veyssiere
 */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "tetris.h"
 
 char	*my_realloc(char add, char *prompt)
 {

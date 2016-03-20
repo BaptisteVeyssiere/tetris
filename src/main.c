@@ -5,16 +5,10 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 18:08:00 2016 nathan scutari
-** Last update Sun Mar 20 14:32:28 2016 nathan scutari
+** Last update Sun Mar 20 19:56:52 2016 Baptiste veyssiere
 */
 
 #include "tetris.h"
-#include <stdlib.h>
-#include <ncurses.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include <time.h>
-#include <termios.h>
 
 void			init_ioctl()
 {
@@ -50,7 +44,6 @@ void	prep_screen()
 int	init_sequences(t_config *config, char **env)
 {
   int	i;
-  char	*s;
 
   if (setupterm(get_term(env), 1, &i) == 1 || i != 1)
     return (-1);
@@ -62,6 +55,7 @@ int	init_sequences(t_config *config, char **env)
     config->right = tigetstr("kcuf1");
   if (config->turn == NULL)
     config->turn = tigetstr("kcuu1");
+  return (0);
 }
 
 t_tetrimino	*init_main(char **av, char **env, t_config *config,
@@ -72,7 +66,7 @@ t_tetrimino	*init_main(char **av, char **env, t_config *config,
   srand(time(NULL));
   tetri = NULL;
   if (load_tetriminos(&tetri) == -1 ||
-    init_config(config, tetri, env) == -1)
+    init_config(config) == -1)
     return (NULL);
   if  (user_config(av, config) == -1)
     {
@@ -92,7 +86,7 @@ t_tetrimino	*init_main(char **av, char **env, t_config *config,
   return (tetri);
 }
 
-int			main(int ac, char **av, char **env)
+int			main(UNUSED int ac, char **av, char **env)
 {
   t_config		config;
   t_tetrimino		*tetri;
@@ -100,6 +94,7 @@ int			main(int ac, char **av, char **env)
   int			c;
   struct winsize	win;
 
+  tetri = NULL;
   if ((tetri = init_main(av, env, &config, tetri)) == NULL)
     return (-1);
   c = 0;
@@ -110,13 +105,11 @@ int			main(int ac, char **av, char **env)
       get_entry(key);
       if (key[0] != 0)
 	key_control(key, &config, tetri);
-      if (++c >= 100 && config.brek == 0)
-	{
-	  if (game_physics(&config, tetri))
-	    end_game(&config, key);
-	  c = -1;
-	}
+      if (++c >= 100 && config.brek == 0 && (c = -1) == -1)
+	if (game_physics(&config, tetri))
+	  end_game(&config, key);
       usleep(get_speed(config.speed, config.level));
     }
   endwin();
+  return (0);
 }
