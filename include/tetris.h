@@ -5,7 +5,7 @@
 ** Login   <scutar_n@epitech.net>
 **
 ** Started on  Wed Mar  2 14:16:12 2016 nathan scutari
-** Last update Sun Mar 20 20:04:14 2016 Baptiste veyssiere
+** Last update Sun Mar 20 21:42:29 2016 nathan scutari
 */
 
 #ifndef TETRIS_H_
@@ -68,6 +68,7 @@ typedef struct
   char                  debug;
   char                  *turn;
   char                  *drop;
+  char			error;
   char                  *pause;
   char                  brek;
   char                  *quit;
